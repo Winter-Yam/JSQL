@@ -1,5 +1,7 @@
 package com.winter.jsql.repl;
 
+import java.util.Scanner;
+
 /**
  * 交互式解释器
  * @author Winter
@@ -14,6 +16,25 @@ package com.winter.jsql.repl;
 public class Repl {
 
     public static void main(String[] args) {
+        printVersion();
+        Scanner input=new Scanner(System.in);
+        while (true) {
+            printPrompt();
+            String line = input.nextLine();
+            if(".exit".equals(line)){
+                System.exit(0);
+            }else{
+                System.out.println("unknown command");
+            }
+        }
+    }
 
+    private static void printPrompt() {
+        System.out.print("jsql > ");
+    }
+
+    private static void printVersion(){
+        System.out.println("JSQL version 0.0.1");
+        System.out.println("Enter .help for usage hints .");
     }
 }
