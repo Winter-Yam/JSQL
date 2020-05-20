@@ -15,6 +15,7 @@ public enum StatusEnum {
 
     SUCCESS("success"),
     UNKNOWN("unknown"),
+    PREPARE_SYNTAX_ERROR("prepare syntax error"),
     ;
 
     private String status;

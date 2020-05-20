@@ -41,7 +41,7 @@ public class Repl {
 
                 Statement statement = new Statement();
                 SqlComplier sqlComplier = new SqlComplier();
-                switch (sqlComplier.prepareStatement(token, statement)) {
+                switch (sqlComplier.prepareStatement(tokens, statement)) {
                     case SUCCESS:
                         break;
                     case UNKNOWN:
