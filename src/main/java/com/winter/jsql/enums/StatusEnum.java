@@ -9,44 +9,34 @@ package com.winter.jsql.enums;
  * @Email yanwt@vastdata.com.cn
  * @modified
  * @date 2020年04月10 16:41:58
- * @Copyright 广州云图数据技术有限公司
  * @Description 此处添加该类的详细说明
  */
-public enum TokenEnum {
+public enum StatusEnum {
 
-    CRITICAL("critical"),
-    WARNING("warning"),
-    PROMPT("prompt"),
+    SUCCESS("success"),
+    UNKNOWN("unknown"),
     ;
 
-    private String levelName;
+    private String status;
 
-    TokenEnum(String levelName) {
-        this.levelName = levelName;
+    StatusEnum(String status) {
+        this.status = status;
     }
 
-    public String getLevelName() {
-        return levelName;
+    public String getStatus() {
+        return status;
     }
 
-    public void setLevelName(String levelName) {
-        this.levelName = levelName;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public static AlertLevelEnum getByType(String levelName) {
-        for (AlertLevelEnum levelEnum : values()) {
-            if (levelEnum.getLevelName().equals(levelName)) {
-                return levelEnum;
+    public static StatusEnum getByStatus(String status) {
+        for (StatusEnum statusEnum : values()) {
+            if (statusEnum.getStatus().equals(status)) {
+                return statusEnum;
             }
         }
         return null;
-    }
-    public static boolean isValidLevel(String levelName) {
-        for (AlertLevelEnum levelEnum : AlertLevelEnum.values()) {
-            if (levelEnum.getLevelName().equals(levelName)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

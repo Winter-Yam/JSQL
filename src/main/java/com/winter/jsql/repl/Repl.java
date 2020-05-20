@@ -1,6 +1,14 @@
 package com.winter.jsql.repl;
 
+import com.winter.jsql.sqlparser.SqlComplier;
+import com.winter.jsql.sqlparser.SqlProcessor;
+import com.winter.jsql.sqlparser.Statement;
+import com.winter.jsql.util.PrintUtil;
+
 import java.util.Scanner;
+
+import static com.winter.jsql.util.PrintUtil.printPrompt;
+import static com.winter.jsql.util.PrintUtil.printVersion;
 
 /**
  * 交互式解释器
@@ -16,25 +24,36 @@ import java.util.Scanner;
 public class Repl {
 
     public static void main(String[] args) {
-        printVersion();
+        PrintUtil.printVersion();
         Scanner input=new Scanner(System.in);
         while (true) {
-            printPrompt();
+            PrintUtil.printPrompt();
             String line = input.nextLine();
             if(".exit".equals(line)){
                 System.exit(0);
-            }else{
-                System.out.println("unknown command");
             }
+
+            if(line.startsWith(".")){
+                System.out.println("success!\n");
+            }else {
+                String[] tokens = line.split(" ");
+                String token = tokens[0];
+
+                Statement statement = new Statement();
+                SqlComplier sqlComplier = new SqlComplier();
+                switch (sqlComplier.prepareStatement(token, statement)) {
+                    case SUCCESS:
+                        break;
+                    case UNKNOWN:
+                        System.out.println("Unrecognized keyword at start of "+token+"\n");
+                        continue;
+                }
+
+                SqlProcessor sqlProcessor = new SqlProcessor();
+                sqlProcessor.executeStatement(statement);
+                System.out.println("Executed.\n");
+            }
+
         }
-    }
-
-    private static void printPrompt() {
-        System.out.print("jsql > ");
-    }
-
-    private static void printVersion(){
-        System.out.println("JSQL version 0.0.1");
-        System.out.println("Enter .help for usage hints .");
     }
 }

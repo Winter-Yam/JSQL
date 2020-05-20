@@ -9,34 +9,33 @@ package com.winter.jsql.enums;
  * @Email yanwt@vastdata.com.cn
  * @modified
  * @date 2020年04月10 16:41:58
- * @Copyright 广州云图数据技术有限公司
  * @Description 此处添加该类的详细说明
  */
-public enum StatusEnum {
+public enum StatementEnum {
 
-    CRITICAL("critical"),
-    WARNING("warning"),
-    PROMPT("prompt"),
+    INSERT("insert"),
+    SELECT("select"),
+    UNKNOWN("unknown"),
     ;
 
-    private String status;
+    private String statement;
 
-    StatusEnum(String status) {
-        this.status = status;
+    StatementEnum(String statement) {
+        this.statement = statement;
     }
 
-    public String getStatus() {
-        return status;
+    public String getStatement() {
+        return statement;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatement(String statement) {
+        this.statement = statement;
     }
 
-    public static StatusEnum getByStatus(String status) {
-        for (StatusEnum statusEnum : values()) {
-            if (statusEnum.getStatus().equals(status)) {
-                return statusEnum;
+    public static StatementEnum getStatement(String statement) {
+        for (StatementEnum statementEnum : values()) {
+            if (statementEnum.getStatement().equals(statement)) {
+                return statementEnum;
             }
         }
         return null;

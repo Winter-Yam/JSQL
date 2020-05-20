@@ -8,8 +8,20 @@ package com.winter.jsql.util;
  * @Email yanwt@vastdata.com.cn
  * @modified
  * @date 2020年05月19 23:26:38
- * @Copyright 广州云图数据技术有限公司
  * @Description 此处添加该类的详细说明
  */
 public class PrintUtil {
+
+    public static void printPrompt() {
+        System.out.print("jsql > ");
+    }
+
+    public static void printPrompt(String msg) {
+        System.out.print("jsql > "+msg);
+    }
+
+    public static void printVersion(){
+        System.out.println("JSQL version 0.0.1");
+        System.out.println("Enter .help for usage hints .");
+    }
 }
